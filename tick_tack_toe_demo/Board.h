@@ -27,7 +27,7 @@ public:
 
 	void showBoard();
 
-	void winCheck();
+	bool winCheck();
 
 private:
 	char** board;

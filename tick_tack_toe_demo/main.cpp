@@ -60,7 +60,9 @@ int main() {
 		}
 
 		// Check winnning
-		board.winCheck();
+		if (board.winCheck()) {
+			exit(0);
+		}
 	}
 
 
