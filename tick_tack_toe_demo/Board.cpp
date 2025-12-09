@@ -62,54 +62,63 @@ bool Board::winCheck() {
 		{board[1][0],board[1][1],board[1][2] },
 		{board[2][0],board[2][1],board[2][2] }
 	};
+
 	for (int i = 1; i < 10; i++) {
-		if (number[(i - 1) / 3][(i - 1) % 3] == 'o') {
-			number[(i - 1) / 3][(i - 1) % 3] = 1;
+		char* current_pos = &number[(i - 1) / 3][(i - 1) % 3];
+
+		if (*current_pos == 'o') {
+			*current_pos = 1;
 		}
-		else if (number[(i - 1) / 3][(i - 1) % 3] == 'x') {
-			number[(i - 1) / 3][(i - 1) % 3] = -1;
+		else if (*current_pos == 'x') {
+			*current_pos = -1;
 		}
 		else {
-			number[(i - 1) / 3][(i - 1) % 3] = 0;
+			*current_pos = 0;
 		}
+
 		//check the row
 		for (int i = 0; i < 3; i++) {
-			if (number[i][0] + number[i][1] + number[i][2] == 3) {
+			int row = number[i][0] + number[i][1] + number[i][2];
+			if (row == 3) {
 				cout << "winner is the o!" << endl;
 				return true;
 				
 			}
-			else if (number[i][0] + number[i][1] + number[i][2] == -3) {
+			else if (row == -3) {
 				cout << "winner is the x!" << endl;
 				return true;
 			}
 		}
 		//check the col
 		for (int i = 0; i < 3; i++) {
-			if (number[0][i] + number[1][i] + number[2][i] == 3) {
+			int col = number[0][i] + number[1][i] + number[2][i];
+			if (col == 3) {
 				cout << "winner is the o!" << endl;
 				return true;
 			}
-			else if (number[0][i] + number[1][i] + number[2][i] == -3) {
+			else if (col == -3) {
 				cout << "winner is the x!" << endl;
 				return true;
 			}
 		}
 		//check the upper right diagonal
-		if (number[0][2] + number[1][1] + number[2][0] == 3) {
+		int diago = number[0][2] + number[1][1] + number[2][0];
+		if (diago == 3) {
 			cout << "winner is the o!" << endl;
 			return true;
 		}
-		else if (number[0][2] + number[1][1] + number[2][0] == -3) {
+		else if (diago == -3) {
 			cout << "winner is the x!" << endl;
 			return true;
 		}
+
+		diago = number[0][0] + number[1][1] + number[2][2];
 		//check the upper left diagonal
-		if (number[0][0] + number[1][1] + number[2][2] == 3) {
+		if (diago == 3) {
 			cout << "winner is the o!" << endl;
 			return true;
 		}
-		else if (number[0][0] + number[1][1] + number[2][2] == -3) {
+		else if (diago == -3) {
 			cout << "winner is the x!" << endl;
 			return true;
 		}

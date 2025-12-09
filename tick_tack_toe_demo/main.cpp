@@ -5,6 +5,7 @@
 #include "Npc.h"
 #include "Human.h"
 
+using namespace std;
 
 int main() {
 
@@ -52,8 +53,6 @@ int main() {
 			int actionPos = npc->checkStage(board);
 
 			npc->actionStage(board, actionPos);
-			
-			//Action
 
 			board.showBoard();
 			break; 
@@ -61,12 +60,11 @@ int main() {
 
 		// Check winnning
 		if (board.winCheck()) {
-			exit(0);
+			return 0;
 		}
 	}
 
-
-
+	cout << "No winners\n";
 
 	return 0;
 }
